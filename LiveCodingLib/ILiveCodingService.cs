@@ -15,7 +15,6 @@ namespace LiveCodingLib
         void LeaveRoom(Room room);
 
         Message SendMessage(Room room, string message);
-        Message SendMessage(string roomName, string message);
 
         event MessageEvent MessageEvent;
     }
