@@ -56,25 +56,6 @@ namespace LiveCodingLib
             _xmpp.SocketDisconnect();
 
         }
-        public Message SendMessage(string roomName, string message)
-        {
-            var room = _rooms.Where(s => s.Key.Trim().ToLower() == string.Format("{0}@{1}", roomName.Trim().ToLower(),
-                _hostName.Trim().ToLower())).SingleOrDefault().Value;
-
-            if (room != null)
-            {
-                var msg = new Message(room.Roomname, _xmpp.MyJID, MessageType.groupchat, message)
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Chatstate = Chatstate.active
-                };
-
-                _xmpp.Send(msg);
-
-                return msg;
-            }
-            return null;
-        }
         public Message SendMessage(Room room, string message)
         {
             var msg = new Message(room.Roomname, _xmpp.MyJID, MessageType.groupchat, message)
